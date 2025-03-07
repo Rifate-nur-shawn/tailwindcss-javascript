@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add comment </title>
+</head>
+<div class="container">
+    <h1>Add Comment</h1>
+    <p>Share your thoughts and reactions below. Feel free to use emojis to express yourself!</p>
+</div>
+<input type="text" placeholder="Add comment">
+<button id="btn">Add Comment</button>
+
+    <div class="comment-section">
+        <textarea id="commentInput" rows="4" placeholder="Enter your comment"></textarea>
+        <br>
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+            <button id="submitComment">Submit</button>
+            <div class="emoji-section">
+                <button onclick="addEmoji('👍')" style="font-size: 20px; margin: 2px;">👍</button>
+                <button onclick="addEmoji('❤️')" style="font-size: 20px; margin: 2px;">❤️</button>
+                <button onclick="addEmoji('😊')" style="font-size: 20px; margin: 2px;">😊</button>
+                <button onclick="addEmoji('😂')" style="font-size: 20px; margin: 2px;">😂</button>
+                <button onclick="addEmoji('😮')" style="font-size: 20px; margin: 2px;">😮</button>
+            </div>
+        </div>
+        <div id="commentDisplay"></div>
+        <script>
+        function addEmoji(emoji) {
+            const commentInput = document.getElementById('commentInput');
+            commentInput.value += emoji;
+        }
+        </script>
+
+    </div>
+    <script>
+        document.getElementById('submitComment').addEventListener('click', function() {
+            const comment = document.getElementById('commentInput').value;
+            if (comment.trim() !== '') {
+                const commentDiv = document.createElement('div');
+                commentDiv.textContent = comment;
+                document.getElementById('commentDisplay').appendChild(commentDiv);
+                document.getElementById('commentInput').value = '';
+                document.getElementById('commentInput').style.width = '500px';
+                document.getElementById('commentInput').style.height = '100px';
+                commentDiv.style.padding = '10px';
+                commentDiv.style.margin = '10px 0';
+                commentDiv.style.backgroundColor = '#f0f2f5';
+                commentDiv.style.borderRadius = '8px';
+                commentDiv.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
+                commentDiv.style.fontFamily = 'Arial, sans-serif';
+                
+                // Create like button and counter
+                const likeSection = document.createElement('div');
+                const likeButton = document.createElement('button');
+                const likeCount = document.createElement('span');
+                
+                likeButton.innerHTML = '👍 Like';
+                likeCount.textContent = '0';
+                likeButton.style.marginRight = '10px';
+                likeCount.style.marginLeft = '5px';
+                
+                let likes = 0;
+                likeButton.addEventListener('click', function() {
+                    likes++;
+                    likeCount.textContent = likes;
+                });
+                
+                likeSection.appendChild(likeButton);
+                likeSection.appendChild(likeCount);
+                commentDiv.appendChild(likeSection);
+            }
+        });
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .comment-section {
+            padding: 30px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            margin-top: 20px;
+        }
+
+        #commentInput {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .emoji-section button {
+            background: transparent;
+            padding: 5px;
+        }
+
+        #commentDisplay div {
+            background-color: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</body>
+</html>
