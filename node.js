@@ -135,13 +135,34 @@ class dog extends animal{
 // console.log(dod.name, dod.age, dod.breed);
 
 
-const nums = [1,2,3,4,5];
-let output = nums.filter(n => n%2);
-console.log(output);
+// const nums = [1,2,3,4,5];
+// let output = nums.filter(n => n%2);
+// console.log(output);
 
-const cube=x=> x*x*x; 
-console.log(cube(2))
-const {x, y, z} = {x: 1, y1: 2, z: 3};
-console.log(y);
-function min(nums) { return Math.min(nums) }
-console.log(min( [1,3,2 ]));
+// const cube=x=> x*x*x; 
+// console.log(cube(2))
+// const {x, y, z} = {x: 1, y1: 2, z: 3};
+// console.log(y);
+// function min(nums) { return Math.min(nums) }
+// console.log(min( [1,3,2 ]));
+
+// function work(x, y = 4) {
+//     return x + y;
+//    }
+//    console.log(work(32);
+
+function LoadUser(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())    
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+}
+async function LoadUserAsync(){
+    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    const data = await res.json();
+    console.log(data);
+}
+const loadUserArrow =async () =>  {
+    const res= await fetch('https://jsonplaceholder.typicode.com/users')
+    console.log(data);
+}
